@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset=gb2312 />
+    <title>Desktop Notification</title>
+</head>
+<body>
+<script>
+        Notification.requestPermission(function (perm) {
+            if (perm == "granted") {
+                var notification = new Notification("现在时间:", {
+                    //dir: "auto",
+                    lang: "hi",
+                    tag: "testTag",
+                    icon: "http://www.html5party.com/bbs/static/image/common/logo.png",
+                    body: "你好"
+                });
+                notification.onshow=function () {
+                    setTimeout(function () {
+                        notification.close();
+                    },2000)
+                }
+            }
+        })
+
+</script>
+</body>

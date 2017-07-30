@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        /*var a={
+            name:'hello'
+        }
+        var str=JSON.stringify(a);
+        var b=JSON.parse(str);
+        b.name='hi';
+        alert(a.name);*/
+        var a={
+            name:{age:10}
+        }
+        var str=JSON.stringify(a);
+        alert(str);
+        var b=JSON.parse(str);
+        b.name.age=200;
+        alert(a.name.age);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

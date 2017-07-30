@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{background: black;}
+        #c1{background: white;}
+    </style>
+    <script>
+        window.onload=function () {
+            var oC=document.getElementById('c1');
+            oG=oC.getContext('2d');
+            function toDraw() {
+                oG.clearRect(0,0,oC.width,oC.height);
+                var date=new Date();
+                var hours=date.getHours();
+                var Min=date.getMinutes();
+                var Seconds=date.getSeconds();
+                var hoursvalue=(-90+hours*30+Min/2)*Math.PI/180;
+                var minvalue=(-90+Min*6)*Math.PI/180;
+                var Secondvalue=(-90+Seconds*6)*Math.PI/180;
+
+                //创建最小刻度6度
+                oG.beginPath();
+                for(var i=0;i<60;i++)
+                {
+                    oG.moveTo(200,200);
+                    oG.arc(200,200,150,6*i*Math.PI/180,6*(i+1)*Math.PI/180,false);
+                }
+                oG.closePath();
+                oG.stroke();
+                //创建表盘将线遮住
+                oG.fillStyle='#fff';
+                oG.beginPath();
+                oG.arc(200,200,150*19/20,0,360*Math.PI/180,false);
+                oG.closePath();
+                oG.fill();
+                //创建30度
+               oG.lineWidth=3;
+                oG.beginPath();
+                for(var i=0;i<60;i++)
+                {
+                    oG.moveTo(200,200);
+                    oG.arc(200,200,150,30*i*Math.PI/180,30*(i+1)*Math.PI/180,false);
+                }
+                oG.closePath();
+                oG.stroke();
+                oG.fillStyle='#fff';
+                //创建表盘将线遮住
+                oG.beginPath();
+                oG.arc(200,200,150*18/20,0,360*Math.PI/180,false);
+                oG.closePath();
+                oG.fill();
+                //时针
+                oG.lineWidth=5;
+                oG.beginPath();
+                oG.moveTo(200,200);
+                oG.arc(200,200,150*10/20,hoursvalue,hoursvalue,false);
+                oG.closePath();
+                oG.stroke();
+                //分针
+                oG.lineWidth=3;
+                oG.beginPath();
+                oG.moveTo(200,200);
+                oG.arc(200,200,150*17/20,minvalue,minvalue,false);
+                oG.closePath();
+                oG.stroke();
+                //秒针
+                oG.lineWidth=2;
+                oG.beginPath();
+                oG.moveTo(200,200);
+                oG.arc(200,200,150*19/20,Secondvalue,Secondvalue,false);
+                oG.closePath();
+                oG.stroke();
+            }
+           setInterval(toDraw,1000);
+            toDraw();
+        }
+    </script>
+</head>
+<body>
+<canvas id="c1" width="400" height="400"></canvas>
+</body>
+</html>

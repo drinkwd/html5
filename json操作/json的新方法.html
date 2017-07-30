@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../json的方法兼容/json2.js"></script>
+    <script>
+        /*有兼容性问题如果想要做兼容json2.js 就可以兼容了
+        */
+        /*var str='function show(){alert(123);}';
+        //可以解析任何字符串转换成js代码（不安全）
+        eval(str);
+        show();*/
+        /*
+        报错因为str不是字符串
+        var str='function show(){alert(123);}';
+        //json.parse只能解析json形式的字符串转换成js（安全）
+        json.parse(str);
+        show();*/
+        //字符串属性要严格的加上引号
+       /* var str='{"name":"cl","age":"23"}';
+        var a=JSON.parse(str);
+         alert(a.name);*/
+        var json={name:'hello'};//不写引号自动加引号
+        var a=JSON.stringify(json);
+        alert(a);
+
+    </script>
+</head>
+<body>
+
+</body>
+</html>

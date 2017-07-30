@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1 {
+            width: 200px;
+            height: 200px;
+            background: red;
+            margin-top: 10px
+        }
+        li{list-style: none}
+    </style>
+    <script>
+        window.onload = function () {
+            var oDiv = document.getElementById('div1');
+            var oUl = document.getElementById('ul1');
+            oDiv.ondragenter = function () {
+                this.innerHTML = '可以松开鼠标了'
+            };
+            oDiv.ondragleave = function () {
+                this.innerHTML = '请把文件拖到上面来'
+            };
+            oDiv.ondragover = function (ev) {
+                ev.preventDefault();
+            };
+            oDiv.ondrop = function (ev) {
+                var fs = ev.dataTransfer.files;
+                ev.preventDefault();
+                for (var i = 0; i < fs.length; i++)
+                    if (fs[i].type.indexOf('image') != -1) {
+                        var fd = new FileReader();
+                        fd.readAsDataURL(fs[i]);
+                        //若果文件读取成功会走 onload事件
+                        fd.onload = function () {
+                            //this.result文件的数据
+                            var oLi = document.createElement('li');
+                            var oImg = document.createElement('img');
+                            oImg.src = this.result;
+                            oLi.appendChild(oImg);
+                            oUl.appendChild(oLi);
+                        }
+
+                    }
+                else
+                    {
+                        alert('请上传图片类型');
+                    }
+
+            };
+        }
+    </script>
+</head>
+<body>
+<div id="div1">请把文件拖到上面来</div>
+<ul id="ul1"></ul>
+</body>
+</html>

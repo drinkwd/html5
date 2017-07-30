@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{background: black;}
+        #c1{background: white;}
+    </style>
+    <script>
+        window.onload=function () {
+            var oC=document.getElementById('c1');
+            var oGc=oC.getContext('2d');
+            oGc.lineWidth=20;
+            //端点样式round圆角square变长了宽度的一半
+            oGc.lineCap='round';
+            oGc.moveTo(100,100);
+            oGc.lineTo(200,200);
+            oGc.stroke();
+
+
+        }
+
+    </script>
+</head>
+<body>
+<!--默认宽300px高150px-->
+<canvas id="c1" width="400"height="400">
+    <span>不支持canvas的浏览器</span>
+</canvas>
+</body>
+</html>

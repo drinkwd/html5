@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!--单线程js全部加载之后才会加载页面-->
+    <!--解决办法 把js放在body后-->
+    <!--defer延迟执行onload之前执行只能加外部文件-->
+    <!--async异步并排执行加载速度快顺序很难保证 独立的js互相不影响-->
+    <script src="a.js"></script>
+    <script src="b.js"></script>
+    <script src="c.js"></script>
+</head>
+<body>
+<img />
+</body>
+</html>

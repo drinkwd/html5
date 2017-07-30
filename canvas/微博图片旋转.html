@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #c1{background: #ffffff}
+        body{background: #000}
+    </style>
+    <script>
+        window.onload=function () {
+            var num=0;
+            var aBtn=document.getElementsByTagName('input');
+            var oc=document.getElementById('c1');
+            var oGC=oc.getContext('2d');
+            //创建img对象
+            var newImg=new Image();
+            newImg.src='../img/2.png';
+            //图片加载完成
+            newImg.onload=function () {
+                draw(this);
+            }
+            function draw(obj)
+            {
+                //图片素材 x轴 y轴 宽 高
+                oGC.drawImage(obj,0,0,400,400);
+                aBtn[1].onclick=function () {
+                    num++;
+                    tochange();
+                };
+
+            }
+            function tochange() {
+                switch (num)
+                {
+                    case 1:
+                        oc.width=obj.height;
+                        oc.height=obj.width;
+                        oGC.rotate(90*Math.PI/180);
+                        oGC.drawImage(obj,0,-obj.height);
+                        break;
+                    case 2:
+                        oc.width=obj.width;
+                        oc.height=obj.height;
+                        oGC.rotate(180*Math.PI/180);
+                        oGC.drawImage(obj,-obj.width,-obj.height);
+                        break;
+                    case 3:
+                        oc.width=obj.height;
+                        oc.height=obj.width;
+                        oGC.rotate(270*Math.PI/180);
+                        oGC.drawImage(obj,-obj.width,0);
+                        break;
+                    case 4:
+                        oc.width=obj.width;
+                        oc.height=obj.height;
+                        oGC.rotate(360*Math.PI/180);
+                        oGC.drawImage(obj,0,0);
+
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+<input type="button" id="btn1" value="<--">
+<input type="button" id="btn2" value="-->">
+<canvas id="c1" width="400" height="400"></canvas>
+</body>
+</html>

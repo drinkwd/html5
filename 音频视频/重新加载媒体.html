@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload=function () {
+            var oA=document.getElementById('a1');
+            var aS=document.getElementsByTagName('source');
+            var aInput=document.getElementsByTagName('input')[0];
+            aInput.onclick=function () {
+                oA.load();
+                aS[0].src='aaa.mp4';
+                aS[1].src='aaa.mp4';
+
+            }
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="重新加载" />
+<video id="a1" src="Intermission-Walk-in_512kb.mp4" controls autoplay loop>
+    <!--处理浏览器的兼容  有的浏览器不支持某些格式-->
+    <source src="Intermission-Walk-in_512kb.mp4"/>
+    <source src="Intermission-Walk-in.ogv"/>
+</video>
+</body>
+</html>

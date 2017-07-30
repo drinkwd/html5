@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload=function () {
+            var aInput=document.getElementsByTagName('input');
+            var oT=document.getElementById('t1');
+            if(window.localStorage.getItem('name'))
+            {
+                aInput[0].value=window.localStorage.getItem('name');
+            }
+            if(window.localStorage.getItem('sex'))
+            {
+                for(var i=1;i<aInput.length;i++)
+                {
+                    if(aInput[i].value=window.localStorage.getItem('sex'))
+                    {
+                        aInput[i].checked=true;
+                    }
+                }
+            }
+            if(window.localStorage.getItem('t'))
+            {
+                oT.value=window.localStorage.getItem('t');
+            }
+            window.onunload=function () {
+                if(aInput[0].value)
+                {
+                    window.localStorage.setItem('name',aInput[0].value);
+                }
+                for(var i=1;i<aInput.length;i++)
+                {
+                    if(aInput[i].checked==true)
+                    {
+                        window.localStorage.setItem('sex',aInput[i].value);
+                    }
+                }
+                if(oT.value)
+                {
+                    window.localStorage.setItem('t',oT.value);
+                }
+            }
+            
+        }
+    </script>
+</head>
+<body>
+<p>
+    用户名:<input type="text"/>
+</p>
+<p>
+    性别:<input type="radio" value="女" name="sex">女
+    <input type="radio" value="男" name="sex">男
+</p>
+<p>
+    内容:<textarea id="t1" style="width: 400px;height: 400px;border: 1px solid black;">
+
+        </textarea>
+</p>
+</body>
+</html>

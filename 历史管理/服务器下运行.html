@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload=function () {
+            var Obtn=document.getElementById('btn');
+            var oDiv=document.getElementById('div1');
+            Obtn.onclick=function () {
+                var arr=random(35,7);
+                oDiv.innerHTML=arr;
+                //三个参数 第一个是数据 第二个参数是title的变化  ，第三个参数可选[地址的变化]
+                //不能刷新一刷新就找不到
+                history.pushState(arr,'',arr);
+            }
+            window.onpopstate=function (ev) {
+                ev=ev||window.event;
+                oDiv.innerHTML=ev.state;
+            }
+            function random(All,Now) {
+                var arr=[];
+                var newArr=[]
+                for(var i=1;i<=All;i++)
+                {
+                    arr.push(i);
+                }
+                for(var i=0;i<Now;i++)
+                {
+                    //返回被删除的项目
+                    newArr.push(arr.splice(Math.floor(Math.random()*arr.length),1))
+                }
+                return newArr;
+            }
+        }
+    </script>
+</head>
+<body>
+<input type="button" id="btn" value="随机选择" />
+<div id="div1"></div>
+</body>
+</html>

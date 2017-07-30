@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        li{list-style: none  ;width: 100px;height: 100px;background:yellow;
+            margin: 10px;}
+        #div1{width: 200px;height: 200px;background: red;margin-top: 10px}
+    </style>
+    <script>
+        window.onload=function () {
+            /*解决火狐下的问题
+             必须设置dataTransfer对象才可以拖拽除图片外的其他标签
+             dataTransfer对象
+             setData() : 设置数据 key和value(必须是字符串)
+             getData() : 获取数据，根据key值，获取对应的value
+             */
+            var aLi=document.getElementsByTagName('li');
+            var oDiv=document.getElementById('div1');
+            for(var i=0;i<aLi.length;i++)
+            {
+                aLi[i].ondragstart=function (ev) {
+                    ev=ev||window.event;
+                    ev.dataTransfer.setData('name','hello');
+                    this.style.background='red';
+                }
+//                aLi[i].ondrag=function () {//开始与结束之间即使不动也触发
+//                    document.title=i++;
+//                }
+                aLi[i].ondragend=function () {
+                    this.style.background='yellow';
+                }
+            }
+            oDiv.ondragenter=function () {
+                this.style.background='blue';
+            }
+            oDiv.ondragleave=function () {
+                this.style.background='red';
+            }
+            oDiv.ondragover=function (ev) {//进入与离开之间即使不动也触发
+                document.title=i++;
+                //要想触发drop事件一定要在drogover中阻止默认事件
+                //return false;
+                ev.preventDefault();
+            }
+            oDiv.ondrop=function (ev) {
+                //alert(123);
+                ev=ev||window.event;
+                alert(ev.dataTransfer.getData('name'));
+            }
+        }
+    </script>
+</head>
+<body>
+<ul>
+    <!--拖拽的是一个副本-->
+    <li draggable="true">a</li>
+    <li draggable="true">c</li>
+    <li draggable="true">b</li>
+</ul>
+<div id="div1"></div>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload=function () {
+
+            var aInput=document.getElementsByTagName('input');
+            for(var i=0;i<aInput.length;i++)
+            {
+                if(aInput[i].checked==true)
+                aInput[i].onclick=function () {
+                    window.localStorage.setItem('name',this.value);
+                }
+            }
+            window.addEventListener('storage',function (ev) {
+                 for(var i=0;i<aInput.length;i++)
+                 {
+                     ev.key
+                 }
+            },false)
+        }
+    </script>
+</head>
+<body>
+<input type="checkbox" value="香蕉">香蕉
+<input type="checkbox" value="菠萝">菠萝
+<input type="checkbox" value="鸭梨">鸭梨
+<input type="checkbox" value="哈密瓜">哈密瓜
+</body>
+</html>

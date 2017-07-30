@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script>
+    /*语音输入只在chrome11中支持*/
+    if (document.createElement('input').webkitSpeech === undefined) {
+        // Not supported
+        alert(1);
+    } else {
+        // Supported!
+        alert(2);
+    }
+</script>
+<body>
+<input type="text" x-webkit-speech/>
+</body>
+</html>

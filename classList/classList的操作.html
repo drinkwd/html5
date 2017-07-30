@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload=function () {
+            var oBox=document.getElementById('box');
+            alert(oBox.classList);//类数组对象
+            alert(oBox.classList.length)//3
+            oBox.classList.add('box4');//填加class
+            oBox.classList.remove('box2')//删除class
+            oBox.classList.toggle('box2')//如果有box2删除 如果没有就添加
+        }
+    </script>
+</head>
+<body>
+<div class="box1 box2 box3" id="box">div</div>
+</body>
+</html>

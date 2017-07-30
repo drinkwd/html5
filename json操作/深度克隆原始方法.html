@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        /*var a={
+            name:'hello'
+        }
+        var b=a;
+        b.name='hi';
+        alert(a.name);//hi因为对象的引用会用同一个引用*/
+        //下面的方法有局限性 可能a里面还嵌套对象
+        var a={
+            name:'hello'
+        }
+        var b={};
+        for(var attr in a)
+        {
+            b[attr]=a[attr];
+        }
+        b.name='hi';
+        alert(a.name);//hello因为是字符串的赋值所以没有引用关系
+    </script>
+</head>
+<body>
+
+</body>
+</html>

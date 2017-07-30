@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload=function () {
+            var oA=document.getElementById('a1');
+            var oC=document.getElementById('c1');
+            var oGc=oC.getContext('2d');
+            oC.width=oA.videoWidth;
+            oC.height=oA.videoHeight;
+            setInterval(function () {
+                oGc.drawImage(oA,0,0);
+            },30)
+        }
+    </script>
+</head>
+<body>
+<video id="a1" src="Intermission-Walk-in_512kb.mp4" controls>
+    <!--处理浏览器的兼容  有的浏览器不支持某些格式-->
+    <source src="Intermission-Walk-in_512kb.mp4"/>
+    <source src="Intermission-Walk-in.ogv"/>
+</video>
+<canvas id="c1"></canvas>
+</body>
+</html>

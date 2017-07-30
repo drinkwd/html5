@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{margin: 0;padding: 0}
+        li{list-style: none;
+            width: 200px;float: left ;border: 1px solid black; margin: 10px}
+        img{width: 200px;}
+       li p{border-bottom: 1px dashed #333;}
+        #box
+        {width: 600px;height: 300px;border: 1px solid black;overflow: hidden;margin-left: 10px}
+        .span1{float: left;width: 200px}
+        .span2{float: left;width: 200px}
+        .span3{float: left;width: 200px}
+         #Allmoney{float: right}
+    </style>
+    <script>
+        window.onload=function () {
+            var allMoney=null;
+            var aLi=document.getElementsByTagName('li');
+            var oDiv=document.getElementById('box');
+            var obj={};
+            var iNum=0;
+            for(var i=0;i<aLi.length;i++)
+            {
+                aLi[i].ondragstart=function (ev) {
+                    var aP=this.getElementsByTagName('p');
+                    ev=ev||window.event;
+                    ev.dataTransfer.setData('title',aP[0].innerHTML);
+                    ev.dataTransfer.setData('money',aP[1].innerHTML);
+                    ev.dataTransfer.setDragImage(this,0,0);
+                };
+
+            }
+            oDiv.ondragover=function (ev) {
+                ev.preventDefault();
+            }
+            oDiv.ondrop=function (ev) {
+                ev.preventDefault();
+                var sTitle= ev.dataTransfer.getData('title');
+                var sMoney= ev.dataTransfer.getData('money');
+                if(!obj[sTitle])
+                {
+                    var op=document.createElement('p');
+                    var ospan=document.createElement('span');
+                    ospan.className='span1';
+                    ospan.innerHTML='1';
+                    op.appendChild(ospan);
+                    var ospan=document.createElement('span');
+                    ospan.className='span2';
+                    ospan.innerHTML=sTitle;
+                    op.appendChild(ospan);
+                    var ospan=document.createElement('span');
+                    ospan.className='span3';
+                    ospan.innerHTML=sMoney;
+                    op.appendChild(ospan);
+                    oDiv.appendChild(op);
+                    obj[sTitle]=1;
+                }
+                else
+                {
+
+                    var ospan1=document.getElementsByClassName('span1');
+                    var ospan2=document.getElementsByClassName('span2');
+                    for(var i=0;i<ospan2.length;i++)
+                    {
+                        if(ospan2[i].innerHTML==sTitle)
+                        {
+                            ospan1[i].innerHTML=parseInt(ospan1[i].innerHTML)+1;
+                        }
+                    }
+                }
+                if(!allMoney)
+                {
+                    allMoney=document.createElement('div');
+                    allMoney.id='Allmoney';
+                }
+                iNum+=parseInt(sMoney);
+                allMoney.innerHTML=iNum+'￥';
+                oDiv.appendChild(allMoney);
+
+
+
+            }
+        }
+    </script>
+</head>
+<body>
+<ul>
+    <li draggable="true">
+        <img src="../img/img1.jpg"/>
+        <p>javascript语言精髓</p>
+        <p>40元</p>
+    </li>
+    <li draggable="true">
+        <img src="../img/img1.jpg"/>
+        <p>javascript精髓</p>
+        <p>40元</p>
+    </li>
+    <li draggable="true">
+        <img src="../img/img1.jpg"/>
+        <p>javascript言精髓</p>
+        <p>40元</p>
+    </li>
+    <li draggable="true">
+        <img src="../img/img1.jpg"/>
+        <p>javasipt语言精髓</p>
+        <p>40元</p>
+    </li>
+</ul>
+<div id="box">
+   <!-- <p>
+        <span class="span1">1</span>
+        <span class="span2">javascript语言精髓</span>
+        <span class="span3">￥40元</span>
+    </p>
+    <p>
+        <span class="span1">1</span>
+        <span class="span2">javascript语言精髓</span>
+        <span class="span3">￥40元</span>
+    </p>
+    <div id="Allmoney">总计80￥</div>-->
+</div>
+</body>
+</html>

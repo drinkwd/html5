@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        li{list-style: none  ;width: 100px;height: 100px;background:yellow;
+            margin: 10px;}
+        #div1{width: 200px;height: 200px;background: red;margin-top: 10px}
+    </style>
+    <script>
+        window.onload=function () {
+            /*draggable ：
+             设置为true，元素就可以拖拽了
+             拖拽元素事件 :  事件对象为被拖拽元素
+             ondragstart ,  拖拽前触发
+             ondrag ,拖拽前、拖拽结束之间，连续触发
+             ondragend  , 拖拽结束触发
+             目标元素事件 :  事件对象为目标元素
+             ondragenter ,  进入目标元素触发，相当于mouseover
+             ondragover  ,进入目标、离开目标之间，连续触发
+             ondragleave ,  离开目标元素触发，相当于mouseout
+             ondrop  ,  在目标元素上释放鼠标触发
+             */
+            var aLi=document.getElementsByTagName('li');
+            var oDiv=document.getElementById('div1');
+            for(var i=0;i<aLi.length;i++)
+            {
+                aLi[i].ondragstart=function () {
+                    this.style.background='red';
+                }
+//                aLi[i].ondrag=function () {//开始与结束之间即使不动也触发
+//                    document.title=i++;
+//                }
+                aLi[i].ondragend=function () {
+                    this.style.background='yellow';
+                }
+            }
+            oDiv.ondragenter=function () {
+                this.style.background='blue';
+            }
+            oDiv.ondragleave=function () {
+                this.style.background='red';
+            }
+            oDiv.ondragover=function (ev) {//进入与离开之间即使不动也触发
+                document.title=i++;
+                //要想触发drop事件一定要在drogover中阻止默认事件
+                //return false;
+                ev.preventDefault();
+            }
+            oDiv.ondrop=function () {
+                alert(123);
+            }
+        }
+    </script>
+</head>
+<body>
+<ul>
+    <!--拖拽的是一个副本-->
+    <li draggable="true">a</li>
+    <li draggable="true">c</li>
+    <li draggable="true">b</li>
+</ul>
+<div id="div1"></div>
+</body>
+</html>

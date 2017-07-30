@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        /*
+        * controls  :   显示或隐藏用户控制界面
+         autoplay  :  媒体是否自动播放
+         loop  : 媒体是否循环播放
+         currentTime  :  开始到播放现在所用的时间
+         duration  :  媒体总时间(只读)
+         volume  :   0.0-1.0的音量相对值
+         muted  :   是否静音
+         autobuffer  :   开始的时候是否缓冲加载，autoplay的时候，忽略此属性
+         */
+        window.onload=function () {
+            var oA=document.getElementById('a1');
+            setInterval(function () {
+                //获取重开始到现在的时间
+                console.log(oA.currentTime);
+            },1000);
+            //可以设置开始时间
+            //oA.currentTime=60;
+        }
+    </script>
+</head>
+<body>
+<video id="a1" src="Intermission-Walk-in_512kb.mp4" controls autoplay loop>
+    <!--处理浏览器的兼容  有的浏览器不支持某些格式-->
+    <source src="Intermission-Walk-in_512kb.mp4"/>
+    <source src="Intermission-Walk-in.ogv"/>
+</video>
+</body>
+</html>

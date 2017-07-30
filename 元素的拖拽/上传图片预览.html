@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #div1{width: 200px;height: 200px;background: red;margin-top: 10px}
+    </style>
+    <script>
+        window.onload=function () {
+            var oDiv = document.getElementById('div1');
+            var oUl=document.getElementById('ul1');
+            oDiv.ondragenter = function () {
+                this.innerHTML = '可以松开鼠标了'
+            };
+            oDiv.ondragleave = function () {
+                this.innerHTML = '请把文件拖到上面来'
+            };
+            oDiv.ondragover = function (ev) {
+                ev.preventDefault();
+            };
+            oDiv.ondrop = function (ev) {
+                //得到的是文件的集合
+                var fs= ev.dataTransfer.files;
+                //防止浏览器的默认行
+                ev.preventDefault();
+                //返回文件的类型
+                //alert(fs[0].type);
+                //创建读取文件的对象
+                var fd=new FileReader();
+                //读取文件
+                fd.readAsDataURL(fs[0]);
+                //若果文件读取成功会走 onload事件
+                fd.onload=function () {
+                    //this.result文件的数据
+                    var oLi=document.createElement('li');
+                    var oImg=document.createElement('img');
+                    oImg.src=this.result;
+                    oLi.appendChild(oImg);
+                    oUl.appendChild(oLi);
+                    alert(oImg.src);
+
+                }
+            };
+        }
+    </script>
+</head>
+<body>
+<div id="div1">请把文件拖到上面来</div>
+<ul id="ul1"></ul>
+</body>
+</html>

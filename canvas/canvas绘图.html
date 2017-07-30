@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{background: black;}
+        #c1{background: white;}
+    </style>
+    <script>
+        window.onload=function () {
+            var oC=document.getElementById('c1');
+//        目前只支持2d场景
+            var oGc=oC.getContext('2d');//webgl:3d
+            //创建方块填充LTWH;
+            //oGc.fillRect(50,50,100,100);
+            //带边框的方块尽量作图的时候LT多加0.5否则会有1px的偏差
+            oGc.strokeRect(50,50,100,100);
+
+        }
+
+    </script>
+</head>
+<body>
+<!--默认宽300px高150px-->
+<!--style中的宽高是会使创建的图形等比例缩放的 canvas中的宽高才是真正的宽高-->
+<canvas id="c1" width="400"height="400">
+    <span>不支持canvas的浏览器</span>
+</canvas>
+</body>
+</html>

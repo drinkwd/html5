@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        body{background: #000}
+    </style>
+    <script>
+        window.onload=function () {
+            var aBtn=document.getElementsByTagName('input');
+            var oImg=document.getElementById('img1');
+            var newImg=new Image();
+            newImg.src=oImg.src;
+            var num=0;
+            newImg.onload=function () {
+                draw(oImg);
+            }
+            function draw(obj) {
+                var oc=document.createElement('canvas');
+                oGC=oc.getContext('2d');
+                oc.width=obj.width;
+                oc.height=obj.height;
+                obj.parentNode.replaceChild(oc,obj);
+                oGC.drawImage(obj,0,0);
+                aBtn[1].onclick=function () {
+                    num++;
+                    if(num==5)
+                    {
+                        num=1;
+                    }
+                    tochange();
+
+                };
+                function tochange() {
+                    switch (num)
+                    {
+                        case 1:
+                            oc.width=obj.height;
+                            oc.height=obj.width;
+                            oGC.rotate(90*Math.PI/180);
+                             oGC.drawImage(obj,0,-20);
+                            break;
+                        case 2:
+                            oc.width=obj.width;
+                            oc.height=obj.height;
+                            oGC.rotate(180*Math.PI/180);
+                            oGC.drawImage(obj,-obj.width,-obj.height);
+                            break;
+                        case 3:
+                            oc.width=obj.height;
+                            oc.height=obj.width;
+                            oGC.rotate(270*Math.PI/180);
+                            oGC.drawImage(obj,-obj.width,0);
+                            break;
+                        case 4:
+                            oc.width=obj.width;
+                            oc.height=obj.height;
+                            oGC.rotate(360*Math.PI/180);
+                            oGC.drawImage(obj,0,0);
+
+                    }
+                }
+            }
+
+        }
+    </script>
+</head>
+<body>
+<input type="button" id="btn1" value="<--">
+<input type="button" id="btn2" value="-->">
+<div><img src="../img/2.png" id="img1"></div>
+</body>
+</html>

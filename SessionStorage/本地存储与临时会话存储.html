@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload=function () {
+            var aInput=document.getElementsByTagName('input');
+            aInput[0].onclick=function () {
+                //设置sessionStorage只要页面关闭就获取不到
+                //localStorage永久存储
+                //window.sessionStorage.setItem('name',aInput[3].value);
+                window.localStorage.setItem('name',aInput[3].value);
+            }
+            aInput[1].onclick=function () {
+                //获取sessionStorage
+                //alert(window.sessionStorage.getItem('name'));
+                alert(window.localStorage.getItem('name'));
+            }
+            aInput[2].onclick=function () {
+                //删除sessionStorage
+                //window.sessionStorage.removeItem('name');
+                window.localStorage.removeItem('name');
+                //sessionStorage.clear()//清除全部
+            }
+        }
+    </script>
+</head>
+<body>
+<input type="button" value="设置"/>
+<input type="button" value="获取"/>
+<input type="button" value="删除"/>
+<input type="text" />
+</body>
+</html>

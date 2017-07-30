@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload=function () {
+            var Obtn=document.getElementById('btn');
+            var oDiv=document.getElementById('div1');
+            var json={};
+            Obtn.onclick=function () {
+                var arr=random(35,7);
+                var num=Math.random();
+                json[num]=arr;
+                oDiv.innerHTML=arr;
+                location.hash=num;
+            }
+            window.onhashchange=function () {
+                var a=window.location.hash.slice(1);
+                oDiv.innerHTML= json[a];
+            }
+            function random(All,Now) {
+                var arr=[];
+                var newArr=[]
+                for(var i=1;i<=All;i++)
+                {
+                    arr.push(i);
+                }
+                for(var i=0;i<Now;i++)
+                {
+                    //返回被删除的项目
+                    newArr.push(arr.splice(Math.floor(Math.random()*arr.length),1))
+                }
+                return newArr;
+            }
+        }
+    </script>
+</head>
+<body>
+<input type="button" id="btn" value="随机选择" />
+<div id="div1"></div>
+</body>
+</html>
